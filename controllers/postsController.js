@@ -118,8 +118,8 @@ module.exports = {
   like: handleErrorAsync(async (req, res, next) => {
     const id = req.params.id;
 
-    await Post.findOneAndUpdate(
-      { id },
+    await Post.findByIdAndUpdate(
+      id,
       // $addToSet: 沒有 id 才 push，避免重複推
       { $addToSet: { likes: req.user.id } }
     );
@@ -131,7 +131,7 @@ module.exports = {
   }),
   unlike: handleErrorAsync(async (req, res, next) => {
     const id = req.params.id;
-    await Post.findOneAndUpdate({ id }, { $pull: { likes: req.user.id } });
+    await Post.findByIdAndUpdate(id, { $pull: { likes: req.user.id } });
     res.status(201).json({
       status: "success",
       postId: id,
