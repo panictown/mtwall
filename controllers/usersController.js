@@ -1,0 +1,137 @@
+const bcrypt = require("bcryptjs");
+const validator = require("validator");
+const User = require("../models/usersModel");
+const appError = require("../service/appError");
+const handleErrorAsync = require("../service/handleErrorAsync");
+const { generateSendJWT } = require("../service/auth");
+
+module.exports = {
+  sign_up: handleErrorAsync(async (req, res, next) => {
+    let { email, password, confirmPassword, name } = req.body;
+
+    // 欄位必填
+    if (!email || !password || !confirmPassword || !name) {
+      return next(appError(400, "欄位未填寫", next));
+    }
+
+    // 暱稱至少 2 個字元以上
+    if (!validator.isLength(name, { min: 2 })) {
+      return next(appError(400, "暱稱至少 2 個字元以上", next));
+    }
+
+    // 密碼一致
+    if (password !== confirmPassword) {
+      return next(appError(400, "密碼不一致", next));
+    }
+
+    // 密碼需至少 8 碼以上，並中英混合
+    if (
+      !validator.isStrongPassword(password, {
+        minUppercase: 0,
+        minNumbers: 1,
+        minSymbols: 0,
+      })
+    ) {
+      return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
+    }
+
+    // 是否為 Email
+    if (!validator.isEmail(email)) {
+      return next(appError(400, "Email 格式不正確", next));
+    }
+
+    // 加密密碼
+    password = await bcrypt.hash(req.body.password, 12);
+
+    // DB：創建 User
+    const newUser = await User.create({
+      email,
+      password,
+      name,
+    });
+
+    // OK 發證
+    generateSendJWT(newUser, 201, res);
+  }),
+  sign_in: handleErrorAsync(async (req, res, next) => {
+    let { email, password } = req.body;
+
+    // 欄位必填
+    if (!email || !password) {
+      return next(appError(400, "欄位未填寫", next));
+    }
+
+    // DB：撈取指定 User 密碼
+    const user = await User.findOne({ email }).select("+password");
+
+    // 比對密碼
+    const auth = await bcrypt.compare(password, user.password);
+    if (!auth) {
+      return next(appError(400, "密碼不正確", next));
+    }
+
+    // OK 發證
+    generateSendJWT(user, 200, res);
+  }),
+  updatePassword: handleErrorAsync(async (req, res, next) => {
+    let { password, confirmPassword } = req.body;
+
+    // 欄位必填
+    if (!password || !confirmPassword) {
+      return next(appError(400, "欄位未填寫", next));
+    }
+
+    // 密碼一致
+    if (password !== confirmPassword) {
+      return next(appError(400, "密碼不一致", next));
+    }
+
+    // 密碼 8 碼以上
+    if (!validator.isLength(password, { min: 8 })) {
+      return next(appError(400, "密碼少於 8 碼", next));
+    }
+
+    // 加密密碼
+    newPassword = await bcrypt.hash(req.body.password, 12);
+
+    // DB：更新 User 密碼
+    const user = await User.findByIdAndUpdate(req.user.id, {
+      password: newPassword,
+    });
+
+    // OK 發證
+    generateSendJWT(user, 200, res);
+  }),
+  getData: handleErrorAsync(async (req, res, next) => {
+    res.status(200).json({
+      status: "success",
+      user: req.user,
+    });
+  }),
+  patchData: handleErrorAsync(async (req, res, next) => {
+    let { name, photo, sex } = req.body;
+
+    // 欄位必填
+    if (!name || !photo || !sex) return next(appError(400, "欄位未填寫", next));
+
+    // 格式驗證
+    if (sex !== "male" && sex !== "female")
+      return next(appError(400, "性別格式錯誤", next));
+
+    // DB：更新 User 資料
+    const user = await User.findByIdAndUpdate(
+      req.user.id,
+      {
+        name,
+        photo,
+        sex,
+      },
+      { new: true, runValidators: true }
+    );
+
+    res.status(200).json({
+      status: "success",
+      user,
+    });
+  }),
+};
