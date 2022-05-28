@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const Post = require("../models/postsModel");
@@ -136,9 +137,19 @@ module.exports = {
     });
   }),
   follow: handleErrorAsync(async (req, res, next) => {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return appError(400, "User ID 格式錯誤", next);
+    }
+
+    if ((await User.findById(req.params.id).exec()) === null) {
+      return appError(400, "無此 User ID", next);
+    }
+
     if (req.params.id === req.user.id) {
       return next(appError(401, "您無法追蹤自己", next));
     }
+
+    // 雙向更新
     await User.updateOne(
       {
         _id: req.user.id,
@@ -157,15 +168,26 @@ module.exports = {
         $addToSet: { followers: { user: req.user.id } },
       }
     );
+
     res.status(200).json({
       status: "success",
       message: "您已成功追蹤！",
     });
   }),
   unfollow: handleErrorAsync(async (req, res, next) => {
+    if (!mongoose.isValidObjectId(req.params.id)) {
+      return appError(400, "User ID 格式錯誤", next);
+    }
+
+    if ((await User.findById(req.params.id).exec()) === null) {
+      return appError(400, "無此 User ID", next);
+    }
+
     if (req.params.id === req.user.id) {
       return next(appError(401, "您無法取消追蹤自己", next));
     }
+
+    // 雙向更新
     await User.updateOne(
       {
         _id: req.user.id,
@@ -182,6 +204,7 @@ module.exports = {
         $pull: { followers: { user: req.user.id } },
       }
     );
+
     res.status(200).json({
       status: "success",
       message: "您已成功取消追蹤！",
