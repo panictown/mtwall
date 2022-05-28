@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const validator = require("validator");
+const Post = require("../models/postsModel");
 const User = require("../models/usersModel");
 const appError = require("../service/appError");
 const handleErrorAsync = require("../service/handleErrorAsync");
@@ -132,6 +133,81 @@ module.exports = {
     res.status(200).json({
       status: "success",
       user,
+    });
+  }),
+  follow: handleErrorAsync(async (req, res, next) => {
+    if (req.params.id === req.user.id) {
+      return next(appError(401, "您無法追蹤自己", next));
+    }
+    await User.updateOne(
+      {
+        _id: req.user.id,
+        "following.user": { $ne: req.params.id },
+      },
+      {
+        $addToSet: { following: { user: req.params.id } },
+      }
+    );
+    await User.updateOne(
+      {
+        _id: req.params.id,
+        "followers.user": { $ne: req.user.id },
+      },
+      {
+        $addToSet: { followers: { user: req.user.id } },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "您已成功追蹤！",
+    });
+  }),
+  unfollow: handleErrorAsync(async (req, res, next) => {
+    if (req.params.id === req.user.id) {
+      return next(appError(401, "您無法取消追蹤自己", next));
+    }
+    await User.updateOne(
+      {
+        _id: req.user.id,
+      },
+      {
+        $pull: { following: { user: req.params.id } },
+      }
+    );
+    await User.updateOne(
+      {
+        _id: req.params.id,
+      },
+      {
+        $pull: { followers: { user: req.user.id } },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "您已成功取消追蹤！",
+    });
+  }),
+  getLikeList: handleErrorAsync(async (req, res, next) => {
+    const likeList = await Post.find({
+      likes: { $in: [req.user.id] },
+    }).populate({
+      path: "user",
+      select: "name _id",
+    });
+    res.status(200).json({
+      status: "success",
+      likeList,
+    });
+  }),
+  getFollowing: handleErrorAsync(async (req, res, next) => {
+    const user = await User.findById(req.user.id).populate({
+      path: "following.user",
+      select: "name photo",
+    });
+    const followingList = user.following;
+    res.status(200).json({
+      status: "success",
+      followingList,
     });
   }),
 };
