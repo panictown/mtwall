@@ -118,6 +118,14 @@ module.exports = {
   like: handleErrorAsync(async (req, res, next) => {
     const id = req.params.id;
 
+    if (!mongoose.isValidObjectId(id)) {
+      return appError(400, "POST ID 格式錯誤", next);
+    }
+
+    if ((await Post.findById(id).exec()) === null) {
+      return appError(400, "無此 POST ID", next);
+    }
+
     await Post.findByIdAndUpdate(
       id,
       // $addToSet: 沒有 id 才 push，避免重複推
@@ -131,6 +139,15 @@ module.exports = {
   }),
   unlike: handleErrorAsync(async (req, res, next) => {
     const id = req.params.id;
+
+    if (!mongoose.isValidObjectId(id)) {
+      return appError(400, "POST ID 格式錯誤", next);
+    }
+
+    if ((await Post.findById(id).exec()) === null) {
+      return appError(400, "無此 POST ID", next);
+    }
+
     await Post.findByIdAndUpdate(id, { $pull: { likes: req.user.id } });
     res.status(201).json({
       status: "success",
@@ -142,6 +159,14 @@ module.exports = {
     const user = req.user.id;
     const post = req.params.id;
     const { comment } = req.body;
+
+    if (!mongoose.isValidObjectId(post)) {
+      return appError(400, "POST ID 格式錯誤", next);
+    }
+
+    if ((await Post.findById(post).exec()) === null) {
+      return appError(400, "無此 POST ID", next);
+    }
 
     const newComment = await Comment.create({
       post,
@@ -158,6 +183,15 @@ module.exports = {
   }),
   getUserPosts: handleErrorAsync(async (req, res, next) => {
     const user = req.params.id;
+
+    if (!mongoose.isValidObjectId(user)) {
+      return appError(400, "User ID 格式錯誤", next);
+    }
+
+    if ((await User.findById(user).exec()) === null) {
+      return appError(400, "無此 User ID", next);
+    }
+
     const posts = await Post.find({ user }).sort("-createdAt");
 
     res.status(200).json({
