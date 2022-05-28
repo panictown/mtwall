@@ -158,7 +158,7 @@ module.exports = {
   }),
   getUserPosts: handleErrorAsync(async (req, res, next) => {
     const user = req.params.id;
-    const posts = await Post.find({ user });
+    const posts = await Post.find({ user }).sort("-createdAt");
 
     res.status(200).json({
       status: "success",
