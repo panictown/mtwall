@@ -48,7 +48,7 @@ module.exports = {
     });
   }),
   postData: handleErrorAsync(async (req, res, next) => {
-    const { content } = req.body;
+    const { content, image } = req.body;
     if (content === undefined) {
       return appError(400, "你沒有填寫 content 資料", next);
     }
@@ -60,6 +60,7 @@ module.exports = {
     const newPost = await Post.create({
       user: req.user.id,
       content,
+      image,
     });
 
     successHandler(res, newPost);
