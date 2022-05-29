@@ -88,9 +88,15 @@ module.exports = {
       return next(appError(400, "密碼不一致", next));
     }
 
-    // 密碼 8 碼以上
-    if (!validator.isLength(password, { min: 8 })) {
-      return next(appError(400, "密碼少於 8 碼", next));
+    // 密碼需至少 8 碼以上，並中英混合
+    if (
+      !validator.isStrongPassword(password, {
+        minUppercase: 0,
+        minNumbers: 1,
+        minSymbols: 0,
+      })
+    ) {
+      return next(appError(400, "密碼需至少 8 碼以上，並中英混合", next));
     }
 
     // 加密密碼
