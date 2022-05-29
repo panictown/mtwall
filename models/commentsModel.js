@@ -20,6 +20,8 @@ const commentSchema = new mongoose.Schema({
     require: ["true", "comment must belong to a post."],
   },
 });
+
+// mongoose 前置器 pre hook, 有用到 find 開頭語法時觸發
 commentSchema.pre(/^find/, function (next) {
   this.populate({
     path: "user",

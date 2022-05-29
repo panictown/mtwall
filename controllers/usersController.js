@@ -155,7 +155,8 @@ module.exports = {
       return next(appError(401, "您無法追蹤自己", next));
     }
 
-    // 雙向更新
+    // 雙向更新 many:many
+    // 自己追蹤對方 (自己的 following)
     await User.updateOne(
       {
         _id: req.user.id,
@@ -165,6 +166,7 @@ module.exports = {
         $addToSet: { following: { user: req.params.id } },
       }
     );
+    // 對方被我追蹤 (對方的 follower)
     await User.updateOne(
       {
         _id: req.params.id,
@@ -193,7 +195,8 @@ module.exports = {
       return next(appError(401, "您無法取消追蹤自己", next));
     }
 
-    // 雙向更新
+    // 雙向更新 many:many
+    // 自己追蹤對方 (自己的 following)
     await User.updateOne(
       {
         _id: req.user.id,
@@ -202,6 +205,7 @@ module.exports = {
         $pull: { following: { user: req.params.id } },
       }
     );
+    // 對方被我追蹤 (對方的 follower)
     await User.updateOne(
       {
         _id: req.params.id,
