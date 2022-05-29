@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const commentSchema = new mongoose.Schema({
   comment: {
     type: String,
-    required: [true, "comment can not be empty!"],
+    required: [true, "請輸入留言內容"],
   },
   createdAt: {
     type: Date,
@@ -12,12 +12,12 @@ const commentSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "user",
-    require: ["true", "user must belong to a post."],
+    required: [true, "請輸入 User ID"],
   },
   post: {
     type: mongoose.Schema.ObjectId,
     ref: "post",
-    require: ["true", "comment must belong to a post."],
+    required: [true, "請輸入 Post ID"],
   },
 });
 
