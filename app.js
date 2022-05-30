@@ -17,7 +17,12 @@ const DB = process.env.DATABASE.replace(
 );
 
 // 資料庫連線
-mongoose.connect(DB).then(() => console.log("資料庫連接成功"));
+mongoose
+  .connect(DB)
+  .then(() => console.log("資料庫連接成功"))
+  .catch((err) => {
+    console.log("⚠️ 資料庫連接失敗", err);
+  });
 
 const app = express();
 
