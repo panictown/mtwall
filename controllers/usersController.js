@@ -138,12 +138,25 @@ module.exports = {
   patchData: handleErrorAsync(async (req, res, next) => {
     let { name, photo, sex } = req.body;
 
+    // 暱稱除去空格
+    name = validator.trim(name);
+
     // 欄位必填
     if (!name || !photo || !sex) return next(appError(400, "欄位未填寫", next));
 
+    // 暱稱至少 2 個字元以上
+    if (!validator.isLength(name, { min: 2 })) {
+      return next(appError(400, "暱稱至少 2 個字元以上", next));
+    }
+
     // 格式驗證
-    if (sex !== "male" && sex !== "female")
+    if (!["male", "female"].includes(sex))
       return next(appError(400, "性別格式錯誤", next));
+
+    // 圖片路徑驗證
+    if (!validator.isURL(photo, { protocols: ["https"] })) {
+      return next(appError(400, "圖片路徑錯誤", next));
+    }
 
     // DB：更新 User 資料
     const user = await User.findByIdAndUpdate(
@@ -154,7 +167,7 @@ module.exports = {
         sex,
       },
       { new: true, runValidators: true }
-    );
+    ).select("_id name photo sex");
 
     res.status(200).json({
       status: "success",
