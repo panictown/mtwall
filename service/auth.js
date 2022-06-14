@@ -18,16 +18,18 @@ const isAuth = handleErrorAsync(async (req, res, next) => {
   }
 
   // 驗證 token 正確性
-  const decoded = await new Promise((resolve, reject) => {
-    // 解密 JWT：jwt.verify(token, secretOrPublicKey, [options, callback])
-    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
+  // 解密 JWT：jwt.verify(token, secretOrPublicKey, [options, callback])
+  const decoded = await jwt.verify(
+    token,
+    process.env.JWT_SECRET,
+    (err, payload) => {
       if (err) {
-        reject(err);
+        return next(appError(400, "認證失敗，請重新登入", next));
       } else {
-        resolve(payload);
+        return payload;
       }
-    });
-  });
+    }
+  );
   const currentUser = await User.findById(decoded.id);
 
   // req 加上 user 資訊，讓 next 可取用
