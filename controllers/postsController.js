@@ -49,7 +49,7 @@ module.exports = {
   }),
   postData: handleErrorAsync(async (req, res, next) => {
     const { content, image } = req.body;
-    if (content === undefined) {
+    if (content === undefined || content.trim() === "") {
       return appError(400, "你沒有填寫 content 資料", next);
     }
 
@@ -88,18 +88,22 @@ module.exports = {
   },
   patchData: async (req, res, next) => {
     const id = req.params.id;
-    const data = req.body;
+    const { name, content, image } = req.body;
 
     if (!mongoose.isValidObjectId(id)) {
       return appError(400, "POST ID 格式錯誤", next);
     }
 
+    if (content === undefined || content.trim() === "") {
+      return appError(400, "你沒有填寫 content 資料", next);
+    }
+
     const newPost = await Post.findByIdAndUpdate(
       id,
       {
-        name: data.name,
-        content: data.content,
-        image: data.image,
+        name,
+        content,
+        image,
       },
       { new: true, runValidators: true }
     );
