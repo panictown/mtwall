@@ -20,11 +20,11 @@ module.exports = {
       // 關聯式
       .populate({
         path: "user",
-        select: "name photo ",
+        select: "name photo",
       })
       .populate({
         path: "comments",
-        select: "comment user",
+        select: "comment user createdAt -_id -post",
       })
       // 排序
       .sort(timeSort);
