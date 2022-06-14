@@ -42,6 +42,12 @@ module.exports = {
       return next(appError(400, "Email 格式不正確", next));
     }
 
+    // Email 是否重複
+    const isEmailUsed = await User.findOne({ email });
+    if (isEmailUsed) {
+      return next(appError(400, "Email 已被使用", next));
+    }
+
     // 加密密碼
     password = await bcrypt.hash(req.body.password, 12);
 
