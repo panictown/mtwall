@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"aa22@gmail.com\",\n    \"password\": \"a1234567\",\n    \"confirmPassword\": \"a1234567\",\n    \"name\": \"a22\"\n}",
+							"raw": "{\n    \"email\": \"aa2201@gmail.com\",\n    \"password\": \"a1234567\",\n    \"confirmPassword\": \"a1234567\",\n    \"name\": \"12 \"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -112,7 +112,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -139,7 +139,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -295,7 +295,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -333,12 +333,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62935bb6d0bbbf694c418c86",
+							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62a872ffa7b07927e59b9d83",
 							"protocol": "https",
 							"host": [
 								"glacial-spire-61203",
@@ -347,7 +347,7 @@
 							],
 							"path": [
 								"posts",
-								"62935bb6d0bbbf694c418c86"
+								"62a872ffa7b07927e59b9d83"
 							]
 						}
 					},
@@ -360,7 +360,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -395,12 +395,12 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62935bb6d0bbbf694c418c86/like",
+							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62a893d8656eac7d731a3b88/like",
 							"protocol": "https",
 							"host": [
 								"glacial-spire-61203",
@@ -409,7 +409,7 @@
 							],
 							"path": [
 								"posts",
-								"62935bb6d0bbbf694c418c86",
+								"62a893d8656eac7d731a3b88",
 								"like"
 							]
 						}
@@ -423,7 +423,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -437,7 +437,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62935bb6d0bbbf694c418c86/unlike",
+							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62a893d8656eac7d731a3b88/unlike",
 							"protocol": "https",
 							"host": [
 								"glacial-spire-61203",
@@ -446,7 +446,7 @@
 							],
 							"path": [
 								"posts",
-								"62935bb6d0bbbf694c418c86",
+								"62a893d8656eac7d731a3b88",
 								"unlike"
 							]
 						}
@@ -460,7 +460,7 @@
 						"header": [
 							{
 								"key": "authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM1Y2E0NDgyMTkzMGZlODA2MTRkNyIsImlhdCI6MTY1MzgyNTUyNCwiZXhwIjoxNjU0MDg0NzI0fQ.TIOIPqv3L9dBbvVNs577PGut86JoNzUY7-bA8uV364A",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTM2NDM0ZmUwMzBmN2Q0OWJmOGJiMSIsImlhdCI6MTY1NTIxNDc0NCwiZXhwIjoxNjU1NDczOTQ0fQ.2EtDj9f1VaJ6iXD6d31GgP3lvisfjdYkvBryXUzcrgw",
 								"type": "text"
 							}
 						],
@@ -474,7 +474,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62935bb6d0bbbf694c418c86/comment",
+							"raw": "https://glacial-spire-61203.herokuapp.com/posts/62a893d8656eac7d731a3b88/comment",
 							"protocol": "https",
 							"host": [
 								"glacial-spire-61203",
@@ -483,7 +483,7 @@
 							],
 							"path": [
 								"posts",
-								"62935bb6d0bbbf694c418c86",
+								"62a893d8656eac7d731a3b88",
 								"comment"
 							]
 						}
@@ -540,17 +540,26 @@
 								{
 									"key": "",
 									"type": "file",
-									"src": "/Users/hu/Downloads/11.jpg"
+									"src": "/Users/hu/Downloads/IMG_9727.JPG"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{URL}}/upload",
+							"raw": "https://glacial-spire-61203.herokuapp.com/upload?type=square",
+							"protocol": "https",
 							"host": [
-								"{{URL}}"
+								"glacial-spire-61203",
+								"herokuapp",
+								"com"
 							],
 							"path": [
 								"upload"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "square"
+								}
 							]
 						}
 					},
