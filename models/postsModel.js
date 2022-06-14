@@ -30,7 +30,7 @@ const postSchema = new mongoose.Schema(
   },
   {
     versionKey: false,
-    toJSON: { virtuals: true },
+    toJSON: { virtuals: true }, // add a virtual field id
     toObject: { virtuals: true },
   }
 );
