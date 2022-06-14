@@ -72,8 +72,18 @@ module.exports = {
       return next(appError(400, "欄位未填寫", next));
     }
 
+    // 是否為 Email
+    if (!validator.isEmail(email)) {
+      return next(appError(400, "Email 格式不正確", next));
+    }
+
     // DB：撈取指定 User 密碼
     const user = await User.findOne({ email }).select("+password");
+
+    // User 是否有值
+    if (!user) {
+      return next(appError(400, "無此 Email", next));
+    }
 
     // 比對密碼
     const auth = await bcrypt.compare(password, user.password);
