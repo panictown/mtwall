@@ -11,6 +11,9 @@ module.exports = {
   sign_up: handleErrorAsync(async (req, res, next) => {
     let { email, password, confirmPassword, name } = req.body;
 
+    // 暱稱除去空格
+    name = validator.trim(name);
+
     // 欄位必填
     if (!email || !password || !confirmPassword || !name) {
       return next(appError(400, "欄位未填寫", next));
